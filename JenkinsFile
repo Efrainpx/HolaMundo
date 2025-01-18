@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar Repositorio') {
+            steps {
+                git credentialsId: 'github-ssh-key', url: 'git@github.com:Efrainpx/HolaMundo.git', branch: 'main'
+            }
+        }
+
+        stage('Compilar') {
+            steps {
+                echo 'Compilando...'
+            }
+        }
+
+        stage('Pruebas') {
+            steps {
+                echo 'Ejecutando pruebas...'
+            }
+        }
+
+        stage('Despliegue') {
+            steps {
+                echo 'Desplegando aplicación...'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completado.'
+        }
+        success {
+            echo 'Pipeline ejecutado exitosamente.'
+        }
+        failure {
+            echo 'Pipeline fallido.'
+        }
+    }
+}
