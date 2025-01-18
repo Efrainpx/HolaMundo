@@ -4,25 +4,28 @@ pipeline {
     stages {
         stage('Clonar Repositorio') {
             steps {
+                // Clonar el repositorio usando credenciales SSH
                 git credentialsId: 'github-ssh-key', url: 'git@github.com:Efrainpx/HolaMundo.git', branch: 'main'
             }
         }
 
         stage('Compilar') {
             steps {
-                // Compilar el código Java con el compilador de línea de comandos
-                sh 'javac HolaMundo.java'
+                // Compilar el código Java usando el compilador de línea de comandos en Windows
+                bat 'javac HolaMundo.java'
             }
         }
 
         stage('Pruebas') {
             steps {
-                sh 'java HolaMundo'
+                // Ejecutar el programa Java en Windows
+                bat 'java HolaMundo'
             }
         }
 
         stage('Despliegue') {
             steps {
+                // Simular un paso de despliegue
                 echo 'Desplegando aplicación...'
             }
         }
@@ -40,3 +43,4 @@ pipeline {
         }
     }
 }
+
