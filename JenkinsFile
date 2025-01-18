@@ -10,13 +10,14 @@ pipeline {
 
         stage('Compilar') {
             steps {
-                echo 'Compilando...'
+                // Compilar el código Java con el compilador de línea de comandos
+                sh 'javac HolaMundo.java'
             }
         }
 
         stage('Pruebas') {
             steps {
-                echo 'Ejecutando pruebas...'
+                sh 'java HolaMundo'
             }
         }
 
